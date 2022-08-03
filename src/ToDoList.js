@@ -4,14 +4,23 @@ import NewToDoForm from './NewToDoForm';
 import ToDo from './ToDo';
 
 const ToDoList = () => {
-    const [ToDos, setToDos] = useState(['This is a test', 'test2']);
+    const [ToDos, setToDos] = useState([]);
+
+    const addToDo = (text) => {
+        let ToDo = { text: text, id: uuid() };
+        setToDos(ToDos => [...ToDos, ToDo]);
+    }
+
+    const removeToDo = (ToDo) => {
+        setToDos(ToDos.filter(item => item !== ToDo));
+    }
 
     return (
         <div>
             <h3>ToDo App - List, Add, and Remove ToDos</h3>
-            <NewToDoForm />
-            <p>------------------ToDos Render Under Here---------------------</p>
-            {ToDos.map(text => <ToDo text={text} />)}
+            <NewToDoForm addToDo={addToDo} />
+            <p>---------------------ToDos Render Under Here---------------------</p>
+            {ToDos ? ToDos.map(item => <ToDo ToDo={item} removeToDo={removeToDo} key={item.id} />) : null}
         </div>
     )
 }

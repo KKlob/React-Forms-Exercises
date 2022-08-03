@@ -1,20 +1,14 @@
 import React from 'react';
 
-const ToDo = ({ text }) => {
+const ToDo = ({ ToDo, removeToDo }) => {
 
-    function handleClick() {
-        console.log("delete");
+    function handleClick(e) {
+        removeToDo(ToDo);
     }
 
     return (
-        <div>
-            - {text} <button onClick={handleClick}>X</button>
-        </div>
+        <li> {ToDo.text} <button onClick={handleClick}>X</button></li>
     )
 }
 
 export default ToDo;
-
-ToDo.defaultProps = {
-    text: "this is the default Text"
-}

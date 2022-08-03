@@ -1,8 +1,13 @@
 import React from 'react';
 
-const Box = ({ style }) => {
+const Box = ({ style, removeBox }) => {
+    function handleClick() {
+        removeBox(style);
+    }
+
     return (
-        <div key={style.id} style={style}>
+        <div style={style}>
+            <button onClick={handleClick}>X</button>
         </div>
     )
 }
